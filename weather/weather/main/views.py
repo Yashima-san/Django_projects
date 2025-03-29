@@ -1,34 +1,31 @@
 from django.shortcuts import render
-# import json to load json data to python dictionary
 import json
-# urllib.request to make a request to api
 import urllib.request
 
-
 def index(request):
+    data = {}
     if request.method == 'POST':
         city = request.POST['city']
-        ''' api key might be expired use your own api_key
-            place api_key in place of appid="your api_key here "  '''
+        api_key = '48a90ac42caa09f90dcaeee4096b9e53'
+        # Сделать запрос к API и получить данные
+        try:
+            source = urllib.request.urlopen(
+                f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=ru').read()
 
-        # source contain json data from api
+            # Конвертировать json данные в словарь
+            list_of_data = json.loads(source)
 
-        source = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53').read()
+            # Извлечение нужных данных
+            data = {
+                "city": list_of_data['name'],  # Название города
+                "country_code": list_of_data['sys']['country'],  # Код страны
+                "coordinate": f"{list_of_data['coord']['lon']} {list_of_data['coord']['lat']}",  # Координаты
+                "temp": list_of_data['main']['temp'],  # Температура
+                "pressure": list_of_data['main']['pressure'],  # Давление
+                "humidity": list_of_data['main']['humidity'],  # Влажность
+            }
+        except Exception as e:
+            print(f"Ошибка: {e}")
+            data = {"city": city, "error": "Не удалось получить данные о погоде."}
 
-        # converting json data to dictionary
-
-        list_of_data = json.loads(source)
-
-        # data for variable list_of_data
-        data = {
-            "country_code": str(list_of_data['sys']['country']),
-            "coordinate": str(list_of_data['coord']['lon']) + ' ' + str(list_of_data['coord']['lat']),
-            "temp": str(list_of_data['main']['temp']) + 'k',
-            "pressure": str(list_of_data['main']['pressure']),
-            "humidity": str(list_of_data['main']['humidity']),
-        }
-        print(data)
-    else:
-        data={}
-    return render(request, "main/index.html",data)
+    return render(request, "main/index.html", data)

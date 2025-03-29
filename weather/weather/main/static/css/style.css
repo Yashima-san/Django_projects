@@ -1,0 +1,64 @@
+html {
+    max-width: 100%;
+    overflow-x: hidden; /* Чтобы отключить горизонтальную прокрутку */
+}
+body {
+    align-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    background-color: #8d23ff;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+  }
+  .navbar h1 {
+    margin: 0;
+  }
+  .weather-container {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .search-form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .search-form input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+  }
+  .search-form button {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #8d23ff;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #8d23ff;
+    color: white;
+    cursor: pointer;
+  }
+  .search-form button:hover {
+    background-color: #8d23ff;
+  }
+  .weather-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: inline-block;
+    text-align: left;
+  }
+  .weather-details h3 {
+    margin-top: 0;
+  }
+  .weather-details p {
+    margin: 5px 0;
+  }
