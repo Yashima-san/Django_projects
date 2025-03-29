@@ -1,0 +1,50 @@
+html {
+    max-width: 100%;
+    overflow-x: hidden; /* Чтобы отключить горизонтальную прокрутку */
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0px;
+    padding-bottom: 10px;
+    background-color: #eff6ff;
+}
+
+header {
+    color: #ffffff;
+    background-color: #82bcff;
+    padding-bottom: 10px;
+    height: 150px;
+    position: -webkit-sticky;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.mcontainer {
+    color: #ffffff;
+    background-color: #82bcff;
+    padding-top: 10px;
+}
+
+header h1 {
+    margin-left: 25%;
+    margin-top: 3%;
+}
+
+.mtext-center {
+    background-color: #cde4ff;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+/* Стили для анимации карточек */
+.news-card {
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Курсор указывает на возможность клика */
+}
+
+.news-card:hover {
+    transform: scale(1.05);
+}

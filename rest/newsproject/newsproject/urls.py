@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Убедитесь, что здесь нет других подключений с тем же пространством имен
     path('', include('newsapp.urls')),
 ]

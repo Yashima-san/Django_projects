@@ -1,33 +1,101 @@
-<!DOCTYPE html> 
-<html lang="en" dir="ltr"> 
-  <head> 
-    <meta charset="utf-8"> 
-    <title></title> 
-  
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
-<!-- Optional theme -->
-  </head> 
-  <body> 
-    <div class="jumbotron" style="color:black"> 
-  
-      <h1 style ="color:white"> 
-   Get The latest news on our website 
-      </h1> 
-  
-    </div> 
-  
-  
-    <div class="container"> 
-      {% for new, des, i in mylist %} 
-              <img src="{{ i }}" alt=""> 
-              <h1>news:</h1> {{ new }} 
-              {{ value|linebreaks }} 
-  
-              <h4>description:</h4>{{ des }} 
-              {{ value|linebreaks }} 
-  
-      {% endfor %} 
-    </div> 
-  
-  </body> 
-</html> 
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Only interesting News!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news_style.css' %}">
+</head>
+
+<body>
+<header class="text-center text-md-start">
+  <h1>Get The latest news on our website</h1>
+</header>
+<div class="mtext-center p-3 text-lg-start text-muted text-center text-md-start">
+  Follow the latest interesting news with us!
+</div>
+<div class="container">
+    <div class="row">  
+        {% for new, des, image_url in mylist %}
+            <div class="col-md-6 mb-4">
+                <div class="card news-card" onclick="openModal('{{ new|escapejs }}', '{{ des|escapejs }}', '{{ image_url }}')">
+                    <img src="{{ image_url }}" class="card-img-top" alt="{{ new }}">  
+                    <div class="card-body">
+                        <h5 class="card-title">News:</h5>
+                        <p class="card-text">{{ new }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newsModalLabel">News</h5>
+        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" src="" class="img-fluid" alt="">
+        <h5 id="modalTitle"></h5>
+        <p id="modalDescription"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center text-lg-start text-muted">
+  <div class="mcontainer text-center text-md-start">
+      <div class="row">
+          <div class="col-md-4 mb-4">
+              <h5 class="text-uppercase">Сontact</h5>
+              <p>
+                Phone number: +7 (123) 456-78-90<br>
+                Email: info@yourwebsite.com<br>
+              </p>
+          </div>
+          <div class="col-md-4 mb-4">
+              <h5 class="text-uppercase">Social media</h5>
+              <a href="#" class="text-reset">Facebook</a><br>
+              <a href="#" class="text-reset">Twitter</a><br>
+              <a href="#" class="text-reset">Instagram</a>
+          </div>
+          <div class="col-md-4 mb-4">
+              <h5 class="text-uppercase">About</h5>
+              <p>
+                We provide you with the latest news and information so that you are always up to date!
+              </p>
+          </div>
+      </div>
+  </div>
+  <div class="mtext-center p-3">
+      © 2025 All rights reserved | Only interesting News!
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<script>
+    function openModal(title, description, imageUrl) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDescription').textContent = description;
+        document.getElementById('modalImage').src = imageUrl;
+        $('#newsModal').modal('show');
+    }
+</script>
+
+</body>
+</html>
