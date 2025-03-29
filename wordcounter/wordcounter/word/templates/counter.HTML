@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Счетчик слов и символов</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    }
+    .navbar {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    }
+    .navbar h1 {
+    margin: 0;
+    }
+    .container {
+    margin-top: 50px;
+    padding: 20px;
+    }
+    .result-card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .result-card h3 {
+    margin-top: 0;
+    }
+    .result-card p {
+    margin: 5px 0;
+    }
+    .form-container {
+    background-color: #c2d6d6;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group label {
+    font-weight: bold;
+    }
+    .form-group textarea {
+    background-color: #f0f5f5;
+    resize: vertical;
+    }
+    .ads-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    }
+    .submit-button {
+    width: 25%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    }
+    .submit-button:hover {
+    background-color: #218838;
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <h1>Счетчик слов и символов</h1>
+</div>
+
+<div class="container">
+    {% if i %}
+    <div class="result-card">
+    <h3>{{ word }} слов в этом тексте</h3>
+    </div>
+    {% endif %}
+    
+    <div class="form-container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="text1">Вставьте текст</label>
+        <textarea class="form-control" placeholder="Вставьте текст здесь для подсчёта слов и символов"
+                    name="texttocount" id="text1" rows="8">{{ text }}</textarea>
+        </div>
+        
+        <!-- Ads section start -->
+        <div class="ads-section">
+        </div>
+        <!-- Ads section end -->
+        
+        <div class="form-group text-center">
+        <button type="submit" class="submit-button">Запустить счетчик</button>
+        </div>
+    </form>
+    </div>
+</div>
+</body>
+</html>
