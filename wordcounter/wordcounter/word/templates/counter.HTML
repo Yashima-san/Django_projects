@@ -22,7 +22,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         <div class="form-group">
-        <label for="text1">Вставьте текст</label>
+        <label class="label" for="text1">Вставьте текст</label>
         <textarea class="form-control" placeholder="Вставьте текст здесь для подсчёта слов и символов"
                     name="texttocount" id="text1" rows="8">{{ text }}</textarea>
         </div>
